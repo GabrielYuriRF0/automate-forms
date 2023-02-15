@@ -1,0 +1,4 @@
+1 - Extract data from worksheet. (Done)
+2 - Format the extracted data. (Done)
+3 - Automate form filling and submission.
+4 - Automate for specific day and time every week.
