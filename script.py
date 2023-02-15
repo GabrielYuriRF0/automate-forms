@@ -1,34 +1,33 @@
+from selenium import webdriver
 import pandas as pd
+import pyautogui
 
 dataFrame = pd.read_excel('weekly-activities.xlsx')
 
 def extractData(dataFrame):
-    dictionary = {"Segunda": [], "Terca": [], "Quarta": [], "Quinta": [], "Sexta": []}
-   
+    days = ["Segunda" , "Terca", "Quarta", "Quinta", "Sexta"]
+    activitiesOfWeek = ""
+
     j = -1
-    for key in dictionary.keys():
+    for day in days:
+        activitiesOfWeek += day + " : "
         j += 1
         for i in range(3):
-            dictionary[key].append(dataFrame.loc[j][i+1])
+            if type(activitiesOfWeek) == type(dataFrame.loc[j][i+1]):
+                activitiesOfWeek += str (dataFrame.loc[j][i+1]) + ", "
+
+        activitiesOfWeek = activitiesOfWeek[:-2]        
+        activitiesOfWeek += "\n"
+
+    return activitiesOfWeek       
 
 
-    return dictionary          
+'''def automateFillForm(activities):
+    browser = webdriver.Chrome()
+    browser.get("https://docs.google.com/forms/d/e/1FAIpQLSfcICjPZq5DOYDifFVqiWIDS9mrBs5vSb7-pfmIVZMi5J0gKg/viewform")
+
+    pyautogui.sleep(5)'''
 
 
-def generateText(dictionary):
-    resultString = ""
-    for key in dictionary.keys():
-        resultString += key + " - "
-        for activity in dictionary[key]:
-            if type(activity) == type(resultString):
-                resultString += activity + ", "
-        resultString = resultString[:-2]        
-        resultString += "\n"
-
-    return resultString
-
-
-activitiesSequence = generateText(extractData(dataFrame))
-print(activitiesSequence)
 
     
