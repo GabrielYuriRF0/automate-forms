@@ -20,3 +20,6 @@ pip install pyautogui
 ~~~~
 pip install selenium
 ~~~~
+
+### How to use the spreadsheet?
+- Put the worksheet in the same folder as the script and edit it according to your week's tasks.
